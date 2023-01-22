@@ -39,6 +39,7 @@ class ProdukAdapter(val listProduk: List<Produk>):RecyclerView.Adapter<ProdukAda
         val numberFormat = NumberFormat.getCurrencyInstance(localeID)
 
         holder.txtHarga.text = numberFormat.format(produk.harga.toDouble()).toString()
+        holder.txtStok.text = "Stok: " + produk.stok
 
         val token = LoginActivity.sessionManager.getString("TOKEN")
 
@@ -78,6 +79,7 @@ class ProdukAdapter(val listProduk: List<Produk>):RecyclerView.Adapter<ProdukAda
     class ViewHolder(itemViem: View) : RecyclerView.ViewHolder(itemViem) {
         val txtNamaProduk = itemViem.findViewById(R.id.txtNamaProduk) as TextView
         val txtHarga = itemViem.findViewById(R.id.txtHarga) as TextView
+        val txtStok = itemViem.findViewById(R.id.txtStok) as TextView
         val btnDelete = itemViem.findViewById(R.id.btnDelete) as ImageButton
         val btnEdit = itemViem.findViewById(R.id.btnEdit) as ImageButton
     }

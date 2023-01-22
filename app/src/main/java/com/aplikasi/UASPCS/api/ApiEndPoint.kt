@@ -4,6 +4,7 @@ import com.aplikasi.UASPCS.response.itemTransaksi.ItemTransasksiResponsePost
 import com.aplikasi.UASPCS.response.login.LoginResponse
 import com.aplikasi.UASPCS.response.produk.ProdukResponse
 import com.aplikasi.UASPCS.response.produk.ProdukResponsePost
+import com.aplikasi.UASPCS.response.supplier.Supplier
 import com.aplikasi.UASPCS.response.supplier.SupplierResponse
 import com.aplikasi.UASPCS.response.transaksi.TransaksiResponse
 import com.aplikasi.UASPCS.response.transaksi.TransaksiResponsePost
@@ -75,6 +76,21 @@ interface ApiEndpoint {
         @Header("Authorization") token : String
     ) : Call<TransaksiResponse>
 
-    @GET("supplier")
-    fun getSupplier(@Header("Authorization") token : String) : Call<SupplierResponse>
+    @GET("produk")
+    fun getSupplier(
+        @Header("Authorization") token : String
+    ) : Call<SupplierResponse>
+
+    @FormUrlEncoded
+    @POST("produk")
+    fun postsupplier(
+        @Header("Authorization") token: String,
+        @Field("admin_id") admin_id:Int,
+        @Field("nama") nama:String,
+        @Field("harga") harga: Int,
+        @Field("stok") stok: Int
+    ) : Call<ProdukResponsePost>
+
+//    @GET("supplier")
+//    fun getSupplier(@Header("Authorization") token : String) : Call<SupplierResponse>
 }

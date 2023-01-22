@@ -55,4 +55,8 @@
             android:name="argsTotal"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/bayarSupplierFragment"
+        android:name="com.aplikasi.UASPCS.BayarSupplierFragment"
+        android:label="BayarSupplierFragment" />
 </navigation>
