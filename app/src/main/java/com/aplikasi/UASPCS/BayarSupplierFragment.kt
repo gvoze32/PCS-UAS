@@ -1,22 +1,18 @@
 package com.aplikasi.UASPCS
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.aplikasi.UASPCS.api.BaseRetrofit
 import com.aplikasi.UASPCS.response.cart.Cart
 import com.aplikasi.UASPCS.response.itemTransaksi.ItemTransasksiResponsePost
-import com.aplikasi.UASPCS.response.transaksi.TransaksiResponse
 import com.aplikasi.UASPCS.response.transaksi.TransaksiResponsePost
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,9 +48,10 @@ class BayarSupplierFragment : Fragment() {
                     Log.e("id_transaksi", id_transaksi.toString())
 
                     for (item in my_cart!!){
-                        api.postItemTransaksi(token.toString(), id_transaksi.toString().toInt(), item.id, item.qty, item.harga).enqueue(object : Callback<ItemTransasksiResponsePost>{
+                        var itemqtymin = (item.qty * -1)
+                        Log.e("qty", itemqtymin.toString())
+                        api.postItemTransaksi(token.toString(), id_transaksi.toString().toInt(), item.id, itemqtymin, item.harga).enqueue(object : Callback<ItemTransasksiResponsePost>{
                             override fun onResponse(call: Call<ItemTransasksiResponsePost>, response: Response<ItemTransasksiResponsePost>) {
-
                             }
 
                             override fun onFailure(call: Call<ItemTransasksiResponsePost>, t: Throwable) {
@@ -65,8 +62,7 @@ class BayarSupplierFragment : Fragment() {
                     }
 
                     Toast.makeText(view.context,"Data transaksi disimpan", Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.transaksiFragment)
-
+                    findNavController().navigate(R.id.supplierFragment)
 
                 }
 
